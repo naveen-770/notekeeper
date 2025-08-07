@@ -36,39 +36,49 @@ const CreateNote = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
+    <div>
+      <h1 className="text-2xl font-bold mb-4">Create New Note</h1>
 
-      <textarea
-        placeholder="Write your note..."
-        value={body}
-        onChange={(e) => setBody(e.target.value)}
-      />
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <input
+          type="text"
+          placeholder="Title"
+          value={title}
+          className="w-full border border-gray-300 rounded px-4 py-2"
+          onChange={(e) => setTitle(e.target.value)}
+        />
 
-      <div>
-        {tags.map((tag) => (
-          <label key={tag.id}>
-            <input
-              type="checkbox"
-              checked={selectedTags.includes(tag.id)}
-              onChange={() => toggleTag(tag.id)}
-            />
-            <span>{tag.label}</span>
-          </label>
-        ))}
-      </div>
-      <button
-        type="submit"
-        className="bg-indigo-600 text-white px-4 py-2 rounded"
-      >
-        Save Note
-      </button>
-    </form>
+        <textarea
+          placeholder="Write your note..."
+          value={body}
+          className="w-full border border-gray-300 rounded px-4 py-2 h-40"
+          onChange={(e) => setBody(e.target.value)}
+        />
+
+        <div>
+          <p className="font-medium mb-1">Tags:</p>
+          <div className="flex flex-wrap gap-3">
+            {tags.map((tag) => (
+              <label key={tag.id} className="flex items-center gap-1 text-sm">
+                <input
+                  type="checkbox"
+                  checked={selectedTags.includes(tag.id)}
+                  onChange={() => toggleTag(tag.id)}
+                  className="accent-blue-600"
+                />
+                <span>{tag.label}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+        <button
+          type="submit"
+          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
+        >
+          Save Note
+        </button>
+      </form>
+    </div>
   );
 };
 

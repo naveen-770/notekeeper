@@ -25,6 +25,7 @@ const NotesProvider = ({ children }: { children: React.ReactNode }) => {
         ];
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [tags, setTags] = useState<Tag[]>([
     { id: "t1", label: "Work" },
     { id: "t2", label: "Personal" },

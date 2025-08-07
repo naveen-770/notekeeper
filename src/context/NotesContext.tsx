@@ -5,6 +5,7 @@ interface NotesContextType {
   notes: Note[];
   tags: Tag[];
   addNote: (note: Note) => void;
+  updateNote: (note: Note) => void;
 }
 
 const NotesContext = createContext<NotesContextType | undefined>(undefined);
@@ -39,8 +40,14 @@ const NotesProvider = ({ children }: { children: React.ReactNode }) => {
     });
   };
 
+  const updateNote = (updatedNote: Note) => {
+    setNotes((prev) =>
+      prev.map((note) => (note.id === updatedNote.id ? updatedNote : note))
+    );
+  };
+
   return (
-    <NotesContext.Provider value={{ notes, tags, addNote }}>
+    <NotesContext.Provider value={{ notes, tags, addNote, updateNote }}>
       {children}
     </NotesContext.Provider>
   );
@@ -54,4 +61,5 @@ const useNotes = () => {
   return context;
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export { NotesProvider, useNotes };

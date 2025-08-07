@@ -29,6 +29,8 @@ const ViewNote = () => {
           ))}
         </ul>
       )}
+      <Link to={`/edit/${note.id}`}>Edit</Link>
+
       <Link to="/">← Back</Link>
     </div>
   );
